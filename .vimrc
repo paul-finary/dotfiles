@@ -78,6 +78,8 @@ set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
 set ttyfast
 " Make backspace great again!
 set backspace=indent,eol,start
+" Use the system clipboard
+set clipboard=unnamed
 
 " When editing a file, always jump to the last known cursor position.
 autocmd BufReadPost *
