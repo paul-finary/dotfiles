@@ -187,6 +187,11 @@ Plug 'thaerkh/vim-indentguides'
 " Autocomplete using tab
 Plug 'ervandew/supertab'
 
+" Ruby syntax highlighting
+Plug 'vim-ruby/vim-ruby'
+" Elixir syntax highlighting
+Plug 'elixir-editors/vim-elixir'
+
 " Pretty icons for NERDTree
 Plug 'ryanoasis/vim-devicons'
 " Jellybeans colorscheme
