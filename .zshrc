@@ -65,8 +65,7 @@ alias "jlab"="jupyter lab"
 alias "cl"="clear && printf '\e[3J'"
 alias "aft"="android-file-transfer"
 alias "ydl"="youtube-dl -x --audio-format mp3 --audio-quality 320k "
-
-lt () {
+function lt () {
     local LEVEL=1
 
     if [ $1 ];
@@ -76,7 +75,7 @@ lt () {
 
     exa -T -L $LEVEL
 }
-cag () {
+function cag () {
     clear
     printf '\e[3J'
     cat $1 | ag -i $2
