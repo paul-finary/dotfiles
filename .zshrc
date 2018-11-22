@@ -1,24 +1,24 @@
 ## DEFAULT
 
-export PYENV_ROOT="$HOME/.pyenv"
-export RBENV_ROOT="$HOME/.rbenv"
-export EXENV_ROOT="$HOME/.exenv"
+PYENV_ROOT="$HOME/.pyenv"
+RBENV_ROOT="$HOME/.rbenv"
+EXENV_ROOT="$HOME/.exenv"
 
-export PATH="$PYENV_ROOT/bin:$RBENV_ROOT/bin:$EXENV_ROOT/bin:/usr/local/sbin:/usr/local/opt/postgresql@9.6/bin:$PATH"
-export HISTFILE="$HOME/.zshist"
-export SAVEHIST=50000
-export HISTSIZE=50000
-export TERM=xterm-256color
-export VISUAL=vim
-export GIT_EDITOR=vim
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
+PATH="$PYENV_ROOT/bin:$RBENV_ROOT/bin:$EXENV_ROOT/bin:/usr/local/sbin:$PATH"
+HISTFILE="$HOME/.zshist"
+SAVEHIST=50000
+HISTSIZE=50000
+TERM=xterm-256color
+VISUAL=vim
+GIT_EDITOR=vim
+LC_ALL=en_US.UTF-8
+LANG=en_US.UTF-8
 
-export QT_DEVICE_PIXEL_RATIO=2
-export GDK_SCALE=2
-export GDK_DPI_SCALE=0.5
-export CLUTTER_PAINT=disable-clipped-raws:disable-culling
-export CLUTTER_VBLANK=True
+QT_DEVICE_PIXEL_RATIO=2
+GDK_SCALE=2
+GDK_DPI_SCALE=0.5
+CLUTTER_PAINT=disable-clipped-raws:disable-culling
+CLUTTER_VBLANK=True
 
 ## OPTIONS ##
 setopt NO_BEEP
@@ -55,16 +55,11 @@ alias "rf"="rm -rf"
 alias "l"="exa"
 alias "ll"="exa -la"
 alias "cat"="bat --style plain"
-alias "hdi"="howdoi"
-alias "grep"="grep --colour=always"
+alias "grep"="ag"
 alias "vi"="vim -O"
-alias "rec"="ffmpeg -f x11grab -r 30 -s 3840x2160 -i :0.0 -acodec pcm_s16le -codec:v libx264 -preset ultrafast -qp 0 screen.mkv"
-alias "recam"="ffmpeg -f alsa -ac 2 -i pulse -f v4l2 -r 30 -s 1920x1080 -i /dev/video0 -acodec pcm_s16le -codec:v libx264 -preset ultrafast -qp 0 cam.mkv"
 alias "py"="python"
 alias "jlab"="jupyter lab"
 alias "cl"="clear && printf '\e[3J'"
-alias "aft"="android-file-transfer"
-alias "ydl"="youtube-dl -x --audio-format mp3 --audio-quality 320k "
 function lt () {
     local LEVEL=1
 
@@ -110,20 +105,6 @@ alias "pu"="pikaur -Syyu"
 alias "ps"="pikaur -Ss"
 alias "pl"="pacman -Qen && pacman -Qem"
 alias "spc"="sudo pacman -Sc && sudo pacman -Rns $(pacman -Qtdq)"
-
-# RECAST
-alias "cy"="cd ~/Work/front/cody"
-alias "mn"="cd ~/Work/front/man"
-alias "be"="cd ~/Work/back/bernard"
-alias "rk"="cd ~/Work/back/rafiki"
-alias "tm"="cd ~/Work/back/tom"
-alias "pca"="cd ~/Work/core/cask"
-alias "ppf"="cd ~/Work/core/prof"
-alias "pat"="cd ~/Work/core/atchoum"
-alias "ptm"="cd ~/Work/core/timide"
-alias "psp"="cd ~/Work/core/simplet"
-alias "sfr"="cd ~/Work/sfr"
-alias "eg"="cd ~/Work/eggs"
 
 # CONFIGS
 alias "szrc"="source ~/.zshrc"

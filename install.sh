@@ -12,3 +12,7 @@ ln -s $ROOT/.zshrc ~/.zshrc
 # Git
 ln -s $ROOT/.gitignore ~/.gitignore
 ln -s $ROOT/.gitconfig ~/.gitconfig
+
+# X
+ln -s $ROOT/.zlogin ~/.zlogin
+ln -s $ROOT/.xinitrc ~/.xinitrc
