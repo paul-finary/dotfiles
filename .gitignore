@@ -28,8 +28,8 @@ log/*.log
 *.sqlite
 dump.rdb
 vectors/*
-!***/.gitkeep
-.vim/plugged/***
+!**/.gitkeep
+.vim/plugged/**
 
 # OS generated files #
 ######################
@@ -48,6 +48,7 @@ cache
 /app/coverage/*
 coverage/
 .coverage
+.coverage.*
 *~
 /vendor/*
 *.lock
@@ -60,7 +61,7 @@ web/sitemap.*
 web/media/*
 public/system/**
 public/uploads/
-tmp/***
+tmp/**
 
 # PHP Storm #
 #############
@@ -79,15 +80,13 @@ db/schema.rb
 
 # Python #
 ##########
-***/*.pyc
-***/settings
-*/settings/production.py
-*/settings/staging.py
-*/settings/development.py
-*/settings/test.py
+**/*.pyc
+**/settings/*
+!**/settings/__init__.py
+!**/settings/dist.py
 
 # Env #
-########
+#######
 .ruby-version
 .python-version
 ~/.vim/plugged/*

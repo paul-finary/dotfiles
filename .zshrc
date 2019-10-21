@@ -1,26 +1,25 @@
-## DEFAULT
-
+# DEFAULT
 PYENV_ROOT="$HOME/.pyenv"
 RBENV_ROOT="$HOME/.rbenv"
 EXENV_ROOT="$HOME/.exenv"
+NODENV_ROOT="$HOME/.nodenv"
+PATH="$PYENV_ROOT/bin:$RBENV_ROOT/bin:$EXENV_ROOT/bin:$NODENV_ROOT/bin:/usr/local/sbin:$PATH"
 
-PATH="$PYENV_ROOT/bin:$RBENV_ROOT/bin:$EXENV_ROOT/bin:/usr/local/sbin:$PATH"
 HISTFILE="$HOME/.zshist"
 SAVEHIST=50000
 HISTSIZE=50000
-TERM=xterm-256color
-VISUAL=vim
-GIT_EDITOR=vim
-LC_ALL=en_US.UTF-8
-LANG=en_US.UTF-8
+HISTCONTROL="ignorespace"
 
-QT_DEVICE_PIXEL_RATIO=2
-GDK_SCALE=2
-GDK_DPI_SCALE=0.5
-CLUTTER_PAINT=disable-clipped-raws:disable-culling
-CLUTTER_VBLANK=True
+TERM="xterm-256color"
 
-## OPTIONS ##
+VISUAL="vim -O"
+GIT_EDITOR="vim -O"
+
+LC_ALL="en_US.UTF-8"
+LANG="en_US.UTF-8"
+
+
+# OPTIONS
 setopt NO_BEEP
 
 setopt share_history
@@ -33,13 +32,13 @@ setopt alwaystoend             # When complete from middle, move cursor
 setopt correct                 # Spelling correction
 setopt completeinword
 zstyle ":completion:*" completer _expand _complete _ignored _approximate
-setopt nopromptcr              # Don't add \n which overwrites cmds with no \n
+setopt nopromptcr              # Don\'t add \n which overwrites cmds with no \n
 setopt interactivecomments
 setopt mark_dirs               # Adds slash to end of completed dirs
 
 
-## BINDS ##
-# Use the emacs keymap (enable ^R, ^A, ^E, etc...)
+# BINDS
+### Use the emacs keymap (enable ^R, ^A, ^E, etc...)
 bindkey -e
 bindkey "\e[3~" delete-char
 bindkey "\e[A" history-search-backward
@@ -48,17 +47,15 @@ bindkey "\e[C" forward-char
 bindkey "\e[D" backward-char
 
 
-## ALIASES ##
-
-# GENERAL
+# ALIASES
+## General
 alias "rf"="rm -rf"
 alias "l"="exa"
 alias "ll"="exa -la"
 alias "cat"="bat --style plain"
-alias "grep"="ag"
+alias "grep"="rg"
 alias "vi"="vim -O"
 alias "py"="python"
-alias "jlab"="jupyter lab"
 alias "cl"="clear && printf '\e[3J'"
 function lt () {
     local LEVEL=1
@@ -70,13 +67,8 @@ function lt () {
 
     exa -T -L $LEVEL
 }
-function cag () {
-    clear
-    printf '\e[3J'
-    cat $1 | ag -i $2
-}
 
-# GIT
+## Git
 alias "gits"="git status"
 alias "gita"="git add"
 alias "gitc"="git commit -m"
@@ -88,7 +80,6 @@ alias "gitf"="git fetch"
 alias "gitch"="git checkout"
 alias "gitd"="git diff"
 alias "gitl"="git log"
-alias "gitls"="git ls-files"
 alias "gith"="git stash"
 alias "gitcl"="git clone"
 alias "gitm"="git merge"
@@ -96,22 +87,13 @@ alias "gitr"="git rebase"
 alias "gitcp"="git cherry-pick"
 alias "gitsh"="git show"
 
-alias "irun"="ansible-playbook"
-
-# PACMAN
-alias "pi"="pikaur -S"
-alias "pr"="pikaur -Rns"
-alias "pu"="pikaur -Syyu"
-alias "ps"="pikaur -Ss"
-alias "pl"="pacman -Qen && pacman -Qem"
-alias "spc"="sudo pacman -Sc && sudo pacman -Rns $(pacman -Qtdq)"
-
-# CONFIGS
+## Configs
 alias "szrc"="source ~/.zshrc"
 alias "vzrc"="vi ~/.zshrc"
 alias "vvrc"="vi ~/.vimrc"
 
-## PROMPT ##
+
+# PROMPT
 setopt prompt_subst
 autoload -U colors && colors
 
@@ -181,6 +163,9 @@ git_prompt_string()
 PS1='$(git_prompt_string)%n@%m '
 RPS1=' %(?..%?)'
 
+
+# VERSIONS MANGEMENT
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 if which exenv > /dev/null; then eval "$(exenv init -)"; fi
+if which nodenv > /dev/null; then eval "$(nodenv init -)"; fi

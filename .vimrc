@@ -277,11 +277,11 @@ autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 
 au FileType c setl shiftwidth=4 softtabstop=4 tabstop=4 expandtab
 au FileType php setl shiftwidth=4 softtabstop=4 tabstop=4 expandtab
+au FileType python setl shiftwidth=4 softtabstop=4 tabstop=4 expandtab
+au FileType pyrex setl shiftwidth=4 softtabstop=4 tabstop=4 expandtab
 
 au FileType ruby setl shiftwidth=2 softtabstop=2 tabstop=2 expandtab
 au FileType elixir setl shiftwidth=2 softtabstop=2 tabstop=2 expandtab
-au FileType python setl shiftwidth=2 softtabstop=2 tabstop=2 expandtab
-au FileType pyrex setl shiftwidth=2 softtabstop=2 tabstop=2 expandtab
 au FileType yaml setl shiftwidth=2 softtabstop=2 tabstop=2 expandtab
 au FileType javascript setl shiftwidth=2 softtabstop=2 tabstop=2 expandtab
 au FileType eruby setl shiftwidth=2 softtabstop=2 tabstop=2 expandtab
