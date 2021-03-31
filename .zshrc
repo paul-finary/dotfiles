@@ -3,14 +3,15 @@ PYENV_ROOT="$HOME/.pyenv"
 RBENV_ROOT="$HOME/.rbenv"
 EXENV_ROOT="$HOME/.exenv"
 NODENV_ROOT="$HOME/.nodenv"
-PATH="$PYENV_ROOT/bin:$RBENV_ROOT/bin:$EXENV_ROOT/bin:$NODENV_ROOT/bin:/usr/local/sbin:$PATH"
+GOENV_ROOT="$HOME/.goenv"
+PATH="$PYENV_ROOT/bin:$RBENV_ROOT/bin:$EXENV_ROOT/bin:$NODENV_ROOT/bin:$GOENV_ROOT/bin:/usr/local/sbin:$PATH"
 
 HISTFILE="$HOME/.zshist"
 SAVEHIST=50000
 HISTSIZE=50000
 HISTCONTROL="ignorespace"
 
-TERM="xterm-256color"
+TERM=xterm-256color
 
 VISUAL="vim -O"
 GIT_EDITOR="vim -O"
@@ -54,8 +55,10 @@ alias "l"="exa"
 alias "ll"="exa -la"
 alias "cat"="bat --style plain"
 alias "grep"="rg"
+alias "rg"="rg -i"
 alias "vi"="vim -O"
 alias "py"="python"
+alias "rb"="irb"
 alias "cl"="clear && printf '\e[3J'"
 function lt () {
     local LEVEL=1
@@ -66,6 +69,9 @@ function lt () {
     fi
 
     exa -T -L $LEVEL
+}
+function vrg () {
+    vim -O $(rg -l $1)
 }
 
 ## Git
@@ -84,6 +90,7 @@ alias "gith"="git stash"
 alias "gitcl"="git clone"
 alias "gitm"="git merge"
 alias "gitr"="git rebase"
+alias "gitbl"="git blame"
 alias "gitcp"="git cherry-pick"
 alias "gitsh"="git show"
 
@@ -92,6 +99,22 @@ alias "szrc"="source ~/.zshrc"
 alias "vzrc"="vi ~/.zshrc"
 alias "vvrc"="vi ~/.vimrc"
 
+## Projects
+alias "fb"="cd ~/Work/flashback"
+alias "pl"="cd ~/Work/peluche"
+
+## Finary
+alias "be"="cd ~/Work/finary/backend"
+alias "wa"="cd ~/Work/finary/web-app"
+alias "ssh-prod"="heroku run bash -a finary-api-production"
+alias "ssh-nprod"="heroku run bash -a finary-api-neoproduction"
+alias "ssh-stag"="heroku run bash -a finary-api-staging"
+
+# Loads scripts from ~/.zsh
+zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
+fpath=(~/.zsh $fpath)
+autoload -Uz compinit && compinit
+autoload -Uz promptinit && promptinit
 
 # PROMPT
 setopt prompt_subst
@@ -169,3 +192,4 @@ if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 if which exenv > /dev/null; then eval "$(exenv init -)"; fi
 if which nodenv > /dev/null; then eval "$(nodenv init -)"; fi
+if which goenv > /dev/null; then eval "$(goenv init -)"; fi

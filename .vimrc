@@ -71,12 +71,12 @@ set foldlevel=99
 " Set term colors as gui colors
 set termguicolors
 " Set default font
-set guifont=Iosevka\ Nerd\ Font
+set guifont=Monaco\ Nerd\ Font:h10
 " Set chars to display in place of special chars
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
 " Terminal acceleration
 set ttyfast
-" Make backspace great again!
+" Make backspace work again
 set backspace=indent,eol,start
 " Use the system clipboard
 set clipboard=unnamed
@@ -180,32 +180,25 @@ Plug 'raimondi/delimitmate'
 Plug 'tpope/vim-surround'
 " Enable multiple cursors
 Plug 'terryma/vim-multiple-cursors'
-" Comments made easy
-Plug 'scrooloose/nerdcommenter'
 " Left-hand side tree
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " Visual Indentation
 Plug 'thaerkh/vim-indentguides'
 " Autocomplete using tab
 Plug 'ervandew/supertab'
+" Gc for commenting
+Plug 'tpope/vim-commentary'
 
-" Ruby syntax highlighting
-Plug 'vim-ruby/vim-ruby'
-" Elixir syntax highlighting
-Plug 'elixir-editors/vim-elixir'
+" Syntax highlighting
+Plug 'sheerun/vim-polyglot'
+
+" Linting
+Plug 'dense-analysis/ale'
 
 " Pretty icons for NERDTree
 Plug 'ryanoasis/vim-devicons'
 " Jellybeans colorscheme
 Plug 'nanotech/jellybeans.vim'
-" Deus colorscheme
-Plug 'ajmwagar/vim-deus'
-" Seoul256 colorscheme
-Plug 'junegunn/seoul256.vim'
-" Zenburn colorscheme
-Plug 'jnurmine/Zenburn'
-" Apprentice colorscheme
-Plug 'romainl/Apprentice'
 
 " Autocomplete end for ruby
 Plug 'tpope/vim-endwise', { 'for': 'ruby' }
@@ -218,14 +211,10 @@ call plug#end()
 
 " Configure the color theme
 colorscheme jellybeans
-"colorscheme deus
-"colorscheme seoul256
-"colorscheme apprentice
-"colorscheme zenburn
 
-""""""""""""""""""""""""""
-" NERDTREE CONFIGURATION "
-""""""""""""""""""""""""""
+""""""""""""
+" NERDTREE "
+""""""""""""
 
 " Set colors for nerdtree
 let NERDChristmasTree = 1
@@ -238,18 +227,9 @@ nnoremap <C-N> :NERDTreeToggle<CR>
 " Automatically close NERDTree if its the last buffer open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
-"""""""""""""""""""""""""""""""
-" NERDCommenter CONFIGURATION "
-"""""""""""""""""""""""""""""""
-
-" Add a space after comment delimiters
-let g:NERDSpaceDelims = 1
-" Set ruby comment delimiter to #
-let g:NERDCustomDelimiters = { 'ruby': { 'left': '#','leftAlt': '#' } }
-
-"""""""""""""""""""""""""""""""
-" MULTI-CURSORS CONFIGURATION "
-"""""""""""""""""""""""""""""""
+"""""""""""""""""
+" MULTI-CURSORS "
+"""""""""""""""""
 
 let g:multi_cursor_use_default_mapping=0
 let g:multi_cursor_start_key='<C-X>'
@@ -258,12 +238,41 @@ let g:multi_cursor_prev_key='<C-D>'
 let g:multi_cursor_skip_key='<C-F>'
 let g:multi_cursor_quit_key='<Esc>'
 
-let g:xml_syntax_folding=1
-au FileType xml setlocal foldmethod=syntax
+setlocal foldmethod=syntax
+
+"""""""
+" ALE "
+"""""""
+
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_set_highlights = 0
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_save = 1
+let g:ale_fix_on_save = 1
+let g:ale_set_quickfix = 1
+let g:ale_sign_error = '>'
+let g:ale_sign_warning = '-'
+let g:ale_statusline_format = ['⨉%d', '⚠ %d', '⬥ ok']
+let g:ale_linters = { 'vue': ['eslint'], 'javascript':  ['eslint'], 'typescriptreact': ['eslint'], 'typescript': ['tsc', 'eslint'], 'ruby': ['rubocop'] }
+let g:ale_fixers = { 'vue':  ['eslint', 'prettier'], 'javascript':  ['eslint', 'prettier'], 'typescript': ['eslint'], 'ruby': ['rubocop'] }
+" Auto close quickfix buffer when it's the last open buffer
+aug QFClose
+  au!
+  au WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
+aug END
+
+"""""""""""""
+" FILETYPES "
+"""""""""""""
 
 au BufRead,BufNewFile *.pyx set filetype=pyrex
 au BufRead,BufNewFile *.twig set filetype=html
 au BufRead,BufNewFile *.md set filetype=markdown
+
+""""""""""""""""
+" AUTOCOMPLETE "
+""""""""""""""""
 
 autocmd FileType ruby set omnifunc=rubycomplete#Complete
 autocmd FileType elixir set omnifunc=elixircomplete#Complete
@@ -275,11 +284,14 @@ autocmd FileType javascript set omnifunc=complete#CompleteJS
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 
+"""""""""""""""""""
+" TAB AND SPACING "
+"""""""""""""""""""
+
 au FileType c setl shiftwidth=4 softtabstop=4 tabstop=4 expandtab
 au FileType php setl shiftwidth=4 softtabstop=4 tabstop=4 expandtab
 au FileType python setl shiftwidth=4 softtabstop=4 tabstop=4 expandtab
 au FileType pyrex setl shiftwidth=4 softtabstop=4 tabstop=4 expandtab
-
 au FileType ruby setl shiftwidth=2 softtabstop=2 tabstop=2 expandtab
 au FileType elixir setl shiftwidth=2 softtabstop=2 tabstop=2 expandtab
 au FileType yaml setl shiftwidth=2 softtabstop=2 tabstop=2 expandtab

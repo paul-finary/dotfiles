@@ -8,6 +8,7 @@ ln -s $ROOT/.vim ~/.vim
 
 # Zsh
 ln -s $ROOT/.zshrc ~/.zshrc
+ln -s $ROOT/.zsh ~/.zsh
 
 # Git
 ln -s $ROOT/.gitignore ~/.gitignore
