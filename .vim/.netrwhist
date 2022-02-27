@@ -1,12 +1,1 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =8
-let g:netrw_dirhist_8='/Users/plk/Work/finary/web-app/pages/portfolio/real-estates'
-let g:netrw_dirhist_7='/Users/plk/Work/finary/backend/app/jobs/notification_jobs'
-let g:netrw_dirhist_6='/Users/plk/Work/finary/backend/config/initializers'
-let g:netrw_dirhist_5='/Users/plk/Work/finary/backend/lib/middleware/rails'
-let g:netrw_dirhist_4='/Users/plk/Work/finary/backend/app/models'
-let g:netrw_dirhist_3='/Users/plk/Work/finary/backend'
-let g:netrw_dirhist_2='/Users/plk/Work/finary/backend/app'
-let g:netrw_dirhist_1='/Users/plk/Work/finary/backend/app/queries'
-let g:netrw_dirhist_0='/Users/plk/Work/finary/backend/app/controllers'
-let g:netrw_dirhist_9='/Users/plk/Work/finary/backend/config/initializers'
+let g:netrw_dirhistmax=0
