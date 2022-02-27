@@ -169,6 +169,9 @@ nnoremap <silent> <Bslash> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR>
 " vno <right> <Nop>
 " vno <up> <Nop>
 
+" Disable languages for polyglot before loading it
+let g:polyglot_disabled = ['markdown']
+
 """""""""""
 " PLUGINS "
 """""""""""
@@ -262,9 +265,10 @@ aug QFClose
   au WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
 aug END
 
-"""""""""""""
-" FILETYPES "
-"""""""""""""
+""""""""""""
+" POLYGLOT "
+""""""""""""
+
 
 au BufRead,BufNewFile *.pyx set filetype=pyrex
 au BufRead,BufNewFile *.twig set filetype=html
@@ -297,6 +301,6 @@ au FileType elixir setl shiftwidth=2 softtabstop=2 tabstop=2 expandtab
 au FileType yaml setl shiftwidth=2 softtabstop=2 tabstop=2 expandtab
 au FileType javascript setl shiftwidth=2 softtabstop=2 tabstop=2 expandtab
 au FileType eruby setl shiftwidth=2 softtabstop=2 tabstop=2 expandtab
-au FileType html setl shiftwidth=2 softtabstop=2 tabstop=2 expandtab
+au FileType html setl shiftwidth=4 softtabstop=4 tabstop=4 expandtab
 au FileType css setl shiftwidth=2 softtabstop=2 tabstop=2 expandtab
 au FileType markdown setl shiftwidth=2 softtabstop=2 tabstop=2 expandtab
