@@ -53,6 +53,7 @@ bindkey "\e[D" backward-char
 alias "rf"="rm -rf"
 alias "l"="exa"
 alias "ll"="exa -la"
+alias "lt"="exa --tree --level=2"
 alias "cat"="bat --style plain"
 alias "grep"="rg"
 alias "rg"="rg -i"
@@ -60,16 +61,6 @@ alias "vi"="vim -O"
 alias "py"="python"
 alias "rb"="irb"
 alias "cl"="clear && printf '\e[3J'"
-function lt () {
-    local LEVEL=1
-
-    if [ $1 ];
-    then
-        LEVEL=$1
-    fi
-
-    exa -T -L $LEVEL
-}
 function vrg () {
     vim -O $(rg -l $1)
 }
@@ -89,7 +80,7 @@ alias "gitl"="git log"
 alias "gith"="git stash"
 alias "gitcl"="git clone"
 alias "gitm"="git merge"
-alias "gitr"="git rebase"
+alias "gitr"="git restore --staged"
 alias "gitbl"="git blame"
 alias "gitcp"="git cherry-pick"
 alias "gitsh"="git show"
@@ -188,7 +179,7 @@ RPS1=' %(?..%?)'
 
 
 # VERSIONS MANGEMENT
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+if which pyenv > /dev/null; then eval "$(pyenv init --path)"; fi
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 if which exenv > /dev/null; then eval "$(exenv init -)"; fi
 if which nodenv > /dev/null; then eval "$(nodenv init -)"; fi
