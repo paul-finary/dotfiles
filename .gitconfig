@@ -3,3 +3,5 @@
 	name = Paul Renvoisé
 [core]
 	editor = vim
+[init]
+	defaultBranch = master
