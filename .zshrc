@@ -1,20 +1,19 @@
 # DEFAULT
-PYENV_ROOT="$HOME/.pyenv"
-RBENV_ROOT="$HOME/.rbenv"
-EXENV_ROOT="$HOME/.exenv"
-NODENV_ROOT="$HOME/.nodenv"
-GOENV_ROOT="$HOME/.goenv"
-PATH="$PYENV_ROOT/bin:$RBENV_ROOT/bin:$EXENV_ROOT/bin:$NODENV_ROOT/bin:$GOENV_ROOT/bin:/usr/local/sbin:$PATH"
+export PYENV_ROOT="$HOME/.pyenv"
+export RBENV_ROOT="$HOME/.rbenv"
+export NODENV_ROOT="$HOME/.nodenv"
+export PATH="$PYENV_ROOT/bin:$RBENV_ROOT/bin:$EXENV_ROOT/bin:$NODENV_ROOT/bin:$GOENV_ROOT/bin:/usr/local/sbin:$PATH"
 
-HISTFILE="$HOME/.zshist"
-SAVEHIST=50000
-HISTSIZE=50000
-HISTCONTROL="ignorespace"
+export HISTFILE="$HOME/.zshist"
+export SAVEHIST=50000
+export HISTSIZE=50000
+export HISTCONTROL="ignorespace"
 
-TERM=xterm-256color
+export TERM=xterm-256color
 
-VISUAL="vim -O"
-GIT_EDITOR="vim -O"
+export VISUAL="vim -O"
+export EDITOR="vim -O"
+export GIT_EDITOR="vim -O"
 
 LC_ALL="en_US.UTF-8"
 LANG="en_US.UTF-8"
@@ -104,7 +103,7 @@ alias "ssh-stag"="heroku run bash -a finary-api-staging"
 # Loads scripts from ~/.zsh
 zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
 fpath=(~/.zsh $fpath)
-autoload -Uz compinit && compinit
+autoload -Uz compinit && compinit -D
 autoload -Uz promptinit && promptinit
 
 # PROMPT
@@ -181,6 +180,7 @@ RPS1=' %(?..%?)'
 # VERSIONS MANGEMENT
 if which pyenv > /dev/null; then eval "$(pyenv init --path)"; fi
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-if which exenv > /dev/null; then eval "$(exenv init -)"; fi
 if which nodenv > /dev/null; then eval "$(nodenv init -)"; fi
-if which goenv > /dev/null; then eval "$(goenv init -)"; fi
+
+zstyle ':completion:*' menu select
+fpath+=~/.zfunc
