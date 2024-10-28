@@ -2,7 +2,7 @@
 export PYENV_ROOT="$HOME/.pyenv"
 export RBENV_ROOT="$HOME/.rbenv"
 export NODENV_ROOT="$HOME/.nodenv"
-export PATH="$PYENV_ROOT/bin:$RBENV_ROOT/bin:$EXENV_ROOT/bin:$NODENV_ROOT/bin:$GOENV_ROOT/bin:/usr/local/sbin:$PATH"
+export PATH="$PYENV_ROOT/bin:$RBENV_ROOT/bin:$EXENV_ROOT/bin:$NODENV_ROOT/bin:/usr/local/sbin:$PATH"
 
 export HISTFILE="$HOME/.zshist"
 export SAVEHIST=50000
@@ -15,8 +15,10 @@ export VISUAL="vim -O"
 export EDITOR="vim -O"
 export GIT_EDITOR="vim -O"
 
-LC_ALL="en_US.UTF-8"
-LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+export LANG="en_US.UTF-8"
+
+export IRB_USE_AUTOCOMPLETE=false
 
 
 # OPTIONS
@@ -52,7 +54,6 @@ bindkey "\e[D" backward-char
 alias "rf"="rm -rf"
 alias "l"="exa"
 alias "ll"="exa -la"
-alias "lt"="exa --tree --level=2"
 alias "cat"="bat --style plain"
 alias "grep"="rg"
 alias "rg"="rg -i"
@@ -60,7 +61,17 @@ alias "vi"="vim -O"
 alias "py"="python"
 alias "rb"="irb"
 alias "cl"="clear && printf '\e[3J'"
-function vrg () {
+function lt() {
+    local LEVEL=1
+
+    if [ $2 ];
+    then
+        LEVEL=$2
+    fi
+
+    exa -T -L $LEVEL $1
+}
+function vrg() {
     vim -O $(rg -l $1)
 }
 
@@ -92,13 +103,6 @@ alias "vvrc"="vi ~/.vimrc"
 ## Projects
 alias "fb"="cd ~/Work/flashback"
 alias "pl"="cd ~/Work/peluche"
-
-## Finary
-alias "be"="cd ~/Work/finary/backend"
-alias "wa"="cd ~/Work/finary/web-app"
-alias "ssh-prod"="heroku run bash -a finary-api-production"
-alias "ssh-nprod"="heroku run bash -a finary-api-neoproduction"
-alias "ssh-stag"="heroku run bash -a finary-api-staging"
 
 # Loads scripts from ~/.zsh
 zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
@@ -174,10 +178,10 @@ git_prompt_string()
 }
 
 PS1='$(git_prompt_string)%n@%m '
-RPS1=' %(?..%?)'
+RPS1='%D{%T}'
 
 
-# VERSIONS MANGEMENT
+# VERSIONS MANAGEMENT
 if which pyenv > /dev/null; then eval "$(pyenv init --path)"; fi
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 if which nodenv > /dev/null; then eval "$(nodenv init -)"; fi

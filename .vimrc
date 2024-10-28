@@ -32,6 +32,8 @@ set incsearch
 set lazyredraw
 " Highlith matching pairs
 set showmatch
+" Shows what select are in visual mode
+set showcmd
 " Set "g" as default flag for regex replace
 set gdefault
 " Display line, column, and percentage of file for the current cursor position
@@ -80,6 +82,8 @@ set ttyfast
 set backspace=indent,eol,start
 " Use the system clipboard
 set clipboard=unnamed
+" Use the newest regex engine
+set re=0
 
 " When editing a file, always jump to the last known cursor position.
 autocmd BufReadPost *
@@ -115,6 +119,8 @@ endfunction
 command -nargs=* REPLACE :call DummyReplace(<f-args>)
 " Sort lines by length
 command -range=% SORTL :<line1>,<line2>!awk '{ print length(), $0 | "sort -n | cut -d\\  -f2-" }'
+" Create occurences of uniq lines
+command -range=% CUNIQ :<line1>,<line2>!awk '{ print $0 }' | sort | uniq -c | sort -nr
 " Count the number of matches
 command COUNT :%s///n
 
@@ -169,52 +175,6 @@ nnoremap <silent> <Bslash> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR>
 " vno <right> <Nop>
 " vno <up> <Nop>
 
-" Disable languages for polyglot before loading it
-let g:polyglot_disabled = ['markdown']
-
-"""""""""""
-" PLUGINS "
-"""""""""""
-call plug#begin('~/.vim/plugged')
-
-" Autocomplete quotes, parenthesis,brackets...
-Plug 'raimondi/delimitmate'
-" Easily replace quotes, parenthesis,brackets...
-Plug 'tpope/vim-surround'
-" Enable multiple cursors
-Plug 'terryma/vim-multiple-cursors'
-" Left-hand side tree
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-" Visual Indentation
-Plug 'thaerkh/vim-indentguides'
-" Autocomplete using tab
-Plug 'ervandew/supertab'
-" Gc for commenting
-Plug 'tpope/vim-commentary'
-
-" Syntax highlighting
-Plug 'sheerun/vim-polyglot'
-
-" Linting
-Plug 'dense-analysis/ale'
-
-" Pretty icons for NERDTree
-Plug 'ryanoasis/vim-devicons'
-" Jellybeans colorscheme
-Plug 'nanotech/jellybeans.vim'
-
-" Autocomplete end for ruby
-Plug 'tpope/vim-endwise', { 'for': 'ruby' }
-
-call plug#end()
-
-""""""""""
-" COLORS "
-""""""""""
-
-" Configure the color theme
-colorscheme jellybeans
-
 """"""""""""
 " NERDTREE "
 """"""""""""
@@ -268,11 +228,12 @@ aug END
 """"""""""""
 " POLYGLOT "
 """"""""""""
+let g:polyglot_disabled = ['markdown', 'csv']
 
-
-au BufRead,BufNewFile *.pyx set filetype=pyrex
-au BufRead,BufNewFile *.twig set filetype=html
-au BufRead,BufNewFile *.md set filetype=markdown
+autocmd BufRead,BufNewFile *.pyx set filetype=pyrex
+autocmd BufRead,BufNewFile *.twig set filetype=html
+autocmd BufRead,BufNewFile *.md set filetype=markdown
+autocmd BufRead,BufNewFile *.tsx set filetype=typescript
 
 """"""""""""""""
 " AUTOCOMPLETE "
@@ -304,3 +265,46 @@ au FileType eruby setl shiftwidth=2 softtabstop=2 tabstop=2 expandtab
 au FileType html setl shiftwidth=4 softtabstop=4 tabstop=4 expandtab
 au FileType css setl shiftwidth=2 softtabstop=2 tabstop=2 expandtab
 au FileType markdown setl shiftwidth=2 softtabstop=2 tabstop=2 expandtab
+
+"""""""""""
+" PLUGINS "
+"""""""""""
+call plug#begin('~/.vim/plugged')
+
+" Autocomplete quotes, parenthesis,brackets...
+Plug 'raimondi/delimitmate'
+" Easily replace quotes, parenthesis,brackets...
+Plug 'tpope/vim-surround'
+" Enable multiple cursors
+Plug 'terryma/vim-multiple-cursors'
+" Left-hand side tree
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+" Visual Indentation
+Plug 'thaerkh/vim-indentguides'
+" Autocomplete using tab
+Plug 'ervandew/supertab'
+" Gc for commenting
+Plug 'tpope/vim-commentary'
+
+" Syntax highlighting
+Plug 'sheerun/vim-polyglot'
+
+" Linting
+Plug 'dense-analysis/ale'
+
+" Pretty icons for NERDTree
+Plug 'ryanoasis/vim-devicons'
+" Jellybeans colorscheme
+Plug 'nanotech/jellybeans.vim'
+
+" Autocomplete end for ruby
+Plug 'tpope/vim-endwise', { 'for': 'ruby' }
+
+call plug#end()
+
+""""""""""
+" COLORS "
+""""""""""
+
+" Configure the color theme
+colorscheme jellybeans
