@@ -1,7 +1,12 @@
 [user]
-	email = renvoisepaul@gmail.com
+	email = paul@finary.com
 	name = Paul Renvoisé
+	singningkey = /Users/paulrenvoise/.ssh/id_ed25519.pub
 [core]
 	editor = vim
 [init]
-	defaultBranch = master
+	defaultBranch = main
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
