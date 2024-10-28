@@ -6,7 +6,7 @@
     "explorer.excludeGitIgnore": true,
     "workbench.startupEditor": "none",
     "workbench.colorCustomizations": {
-        "editorWhitespace.foreground": "#ff0000",
+        "editorWhitespace.foreground": "#ff0000"
     },
     "terminal.explorerKind": "external",
     "terminal.external.osxExec": "iTerm.app",
@@ -24,10 +24,16 @@
         "**/.DS_Store": true,
         "**/Thumbs.db": true,
         "**/__pycache__/": true,
-        "**/.*": true,
+        "**/.*": true
     },
     "debug.internalConsoleOptions": "neverOpen",
     "extensions.ignoreRecommendations": true,
     "vim.vimrc.enable": true,
+    "github.copilot.editor.enableAutoCompletions": true,
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    }
 }
-
