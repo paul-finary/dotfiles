@@ -1,0 +1,33 @@
+{
+    "editor.formatOnType": false,
+    "editor.formatOnSave": true,
+    "editor.minimap.enabled": false,
+    "editor.renderWhitespace": "trailing",
+    "explorer.excludeGitIgnore": true,
+    "workbench.startupEditor": "none",
+    "workbench.colorCustomizations": {
+        "editorWhitespace.foreground": "#ff0000",
+    },
+    "terminal.explorerKind": "external",
+    "terminal.external.osxExec": "iTerm.app",
+    "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.scrollback": 10000,
+    "terminal.integrated.defaultLocation": "editor",
+    "terminal.integrated.defaultProfile": "zsh",
+    "files.eol": "\n",
+    "files.insertFinalNewline": true,
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/__pycache__/": true,
+        "**/.*": true,
+    },
+    "debug.internalConsoleOptions": "neverOpen",
+    "extensions.ignoreRecommendations": true,
+    "vim.vimrc.enable": true,
+}
+
