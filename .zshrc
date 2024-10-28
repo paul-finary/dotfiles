@@ -20,6 +20,8 @@ export LANG="en_US.UTF-8"
 
 export IRB_USE_AUTOCOMPLETE=false
 
+# Let gcloud use external library (numpy for better tunneling perf)
+export CLOUDSDK_PYTHON_SITEPACKAGES=1
 
 # OPTIONS
 setopt NO_BEEP
@@ -101,8 +103,13 @@ alias "vzrc"="vi ~/.zshrc"
 alias "vvrc"="vi ~/.vimrc"
 
 ## Projects
-alias "fb"="cd ~/Work/flashback"
-alias "pl"="cd ~/Work/peluche"
+alias "tk"="cd ~/Work/track"
+alias "te"="cd ~/Work/terminal"
+alias "pj"="cd ~/Work/projector"
+alias "ssh-prod"="gcloud compute ssh finary-track-production-rails-console --project=finary-track-production -- -A"
+alias "ssh-prod"="gcloud compute ssh finary-track-staging-rails-console --project=finary-track-staging -- -A"
+alias "ssh-tool"="gcloud compute ssh finary-tooling-gpu-0 --project=finary-track-tooling --ssh-flag='-L 8080:127.0.0.1:8080' -- -A"
+
 
 # Loads scripts from ~/.zsh
 zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
@@ -185,6 +192,12 @@ RPS1='%D{%T}'
 if which pyenv > /dev/null; then eval "$(pyenv init --path)"; fi
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 if which nodenv > /dev/null; then eval "$(nodenv init -)"; fi
+
+# The next line updates PATH for the Google Cloud SDK
+if [  -f '/Users/paulrenvoise/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/paulrenvoise/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables sehllc ommand completion for gcloud.
+if [  -f '/Users/paulrenvoise/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/paulrenvoise/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 
 zstyle ':completion:*' menu select
 fpath+=~/.zfunc
